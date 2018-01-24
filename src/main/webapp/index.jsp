@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
     <head> 
         <meta property="qc:admins" content="542536566763012535145636" /> 
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
