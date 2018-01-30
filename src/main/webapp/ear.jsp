@@ -152,17 +152,17 @@ function getBrowser()
      </div> 
      <div class="pb-iblock pb-fl pb-nav"> 
       <ul> 
-       <li><a href="index.html">首页</a></li> 
-       <li><a href="news.html">征文比赛</a></li> 
-       <li><a href="pic.html">倾听世界</a></li> 
-       <li><a href="ear.html">叫醒耳朵</a></li> 
-       <li class="pb-nav-li-last"><a href="laugh.html">每日一笑</a></li> 
+       <li><a href="index.jsp">首页</a></li>
+       <li><a href="news.jsp">征文比赛</a></li>
+       <li><a href="pic.jsp">倾听世界</a></li>
+       <li><a href="ear.jsp">叫醒耳朵</a></li>
+       <li class="pb-nav-li-last"><a href="laugh.jsp">每日一笑</a></li>
       </ul> 
      </div> 
      <div class="pb-iblock pb-fr pb-oths"> 
       <a onclick="Sys.commStat(2);commonLib.SetHome(this);" href="javascript:void(0);" class="nmt">设为首页</a> 
-      <a onclick="Sys.commStat(1);commonLib.addFavorite();" rel="sidebar" href="index.html" class="nmt">收藏我们</a> 
-      <a href="suggest.html" class="nmt">投诉建议</a> &nbsp; 
+      <a onclick="Sys.commStat(1);commonLib.addFavorite();" rel="sidebar" href="index.jsp" class="nmt">收藏我们</a>
+      <a href="suggest.jsp" class="nmt">投诉建议</a> &nbsp;
       <span class="nmt"> | </span> 
       <div class="pb-ucenter pb-after-clear"> 
        <div id="uMessageCenter" style="display: block;"> 
@@ -196,7 +196,7 @@ function getBrowser()
       <div class="one-atl"> 
        <img alt="爱他们的时候我们像条狗" src="images/1.jpg" class="img f-l" /> 
        <div class="con f-r"> 
-        <h3><a class="tle" href="pic_detail.html?show/241">爱他们的时候我们像条狗</a><span class="ath"></span></h3> 
+        <h3><a class="tle" href="pic_detail.jsp?show/241">爱他们的时候我们像条狗</a><span class="ath"></span></h3>
         <h4 class="pb-mt10">主播：扣子</h4> 
         <p class="f-l">所有的女朋友里，我最喜欢老夏。因为她和我像，高贵冷艳俗气，俗到骨子里。我们总是在夏天刚开始的那几天去富民路和巨鹿路路口的酒吧。那有一棵著名大 ... </p> 
         <p class="f-l"><object width="400" height="24" type="application/x-shockwave-flash" name="auplayer_1" style="outline: none" data="js/player.swf" id="auplayer_1"><param name="wmode" value="opaque"></param><param name="menu" value="false"></param><param name="flashvars" value="bg=eeeeee&amp;leftbg=a7c8ca&amp;lefticon=155960&amp;rightbg=81b2b6&amp;rightbghover=a7c8ca&amp;righticon=155960&amp;righticonhover=ffffff&amp;text=666666&amp;slider=666666&amp;track=FFFFFF&amp;border=666666&amp;loader=a7c8ca&amp;initialvolume=100&amp;soundFile=/public/audio/201505/atdshwmxtg.mp3&amp;titles=爱他们的时候我们像条狗&amp;artists=扣子&amp;autostart=no&amp;loop=no&amp;playerID=auplayer_1"></param></object></p> 

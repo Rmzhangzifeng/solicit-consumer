@@ -99,17 +99,17 @@ function getBrowser()
      </div> 
      <div class="pb-iblock pb-fl pb-nav"> 
       <ul> 
-       <li><a href="index.html">首页</a></li> 
-       <li><a href="news.html">征文比赛</a></li> 
-       <li><a href="pic.html">倾听世界</a></li> 
-       <li><a href="ear.html">叫醒耳朵</a></li> 
-       <li class="pb-nav-li-last"><a href="laugh.html">每日一笑</a></li> 
+       <li><a href="index.jsp">首页</a></li>
+       <li><a href="news.jsp">征文比赛</a></li>
+       <li><a href="pic.jsp">倾听世界</a></li>
+       <li><a href="ear.jsp">叫醒耳朵</a></li>
+       <li class="pb-nav-li-last"><a href="laugh.jsp">每日一笑</a></li>
       </ul> 
      </div> 
      <div class="pb-iblock pb-fr pb-oths"> 
       <a class="nmt" href="javascript:void(0);" onclick="Sys.commStat(2);commonLib.SetHome(this);">设为首页</a> 
-      <a class="nmt" href="index.html" rel="sidebar" onclick="Sys.commStat(1);commonLib.addFavorite();">收藏我们</a> 
-      <a class="nmt" href="suggest.html">投诉建议</a> &nbsp; 
+      <a class="nmt" href="index.jsp" rel="sidebar" onclick="Sys.commStat(1);commonLib.addFavorite();">收藏我们</a>
+      <a class="nmt" href="suggest.jsp">投诉建议</a> &nbsp;
       <span class="nmt"> | </span> 
       <div class="pb-ucenter pb-after-clear"> 
        <div id="uMessageCenter"> 
