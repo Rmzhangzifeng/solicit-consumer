@@ -83,6 +83,28 @@
     </script>
 </head>
 <body>
+<%--广告区--%>
+<!-- 广告区域 1begin  -->
+<div id="ad1"
+     style="position: fixed; left: 0px; overflow: hidden; z-index: 2147483647; top: 0px;">
+   <%-- <div>
+        <img src="imaage/11.jpg" width="150px" height="130px" />
+    </div>
+    <div>
+        <span onclick="closead(1)">关闭</span>
+    </div>--%>
+</div>
+<div id="ad2"
+     style="position: fixed; right: 0px; overflow: hidden; z-index: 2147483647; top: 0px;">
+  <%--  <div>
+        <img src="imaage/12.jpg" width="150px" height="130px" />
+    </div>
+    <div>
+        <span onclick="closead(2)">关闭</span>
+    </div>--%>
+</div>
+<!-- 广告区域 1end  -->
+<%--广告区--%>
 <div class="pb-container">
     <div class="pb-container-main pb-after-clear">
         <!-- 公共头部 -->
@@ -92,19 +114,19 @@
             </div>
             <div class="pb-iblock pb-fl pb-nav">
                 <ul>
-                    <li><a href="index.html">首页</a></li>
-                    <li><a href="news.html">征文比赛</a></li>
-                    <li><a href="pic.html">倾听世界</a></li>
-                    <li><a href="ear.html">叫醒耳朵</a></li>
-                    <li class="pb-nav-li-last"><a href="laugh.html">每日一笑</a></li>
+                    <li><a href="index.jsp">首页</a></li>
+                    <li><a href="news.jsp">征文比赛</a></li>
+                    <li><a href="pic.jsp">倾听世界</a></li>
+                    <li><a href="ear.jsp">叫醒耳朵</a></li>
+                    <li class="pb-nav-li-last"><a href="laugh.jsp">每日一笑</a></li>
                 </ul>
             </div>
             <div class="pb-iblock pb-fr pb-oths">
                 <a class="nmt" href="javascript:void(0);" onclick="Sys.commStat(2);
               commonLib.SetHome(this);">设为首页</a>
-                <a class="nmt" href="index.html" rel="sidebar" onclick="Sys.commStat(1);
+                <a class="nmt" href="index.jsp" rel="sidebar" onclick="Sys.commStat(1);
               commonLib.addFavorite();">收藏我们</a>
-                <a class="nmt" href="suggest.html">投诉建议</a> &nbsp;
+                <a class="nmt" href="suggest.jsp">投诉建议</a> &nbsp;
                 <span class="nmt"> | </span>
                 <div class="pb-ucenter pb-after-clear">
                     <div id="uMessageCenter">
@@ -705,6 +727,56 @@
         }
         Sys.hide51();
     });
+</script>
+<%--广告区--%>
+<!-- 广告区域2begin -->
+<div id="ad3"
+     style="position: fixed; bottom: 0px; left: 0px; overflow: hidden; z-index: 2147483647;">
+    <%--<div>
+        <span onclick="closead(3)">关闭</span>
+    </div>
+    <div>
+        <img src="imaage/13.jpg" width="150px" height="130px" />
+    </div>--%>
+</div>
+<div id="ad4"
+     style="position: fixed; bottom: 0px; right: 0px; overflow: hidden; z-index: 2147483647;">
+    <%--<div>
+        <span onclick="closead(4)">关闭</span>
+    </div>
+    <div>
+        <img src="imaage/14.jpg" width="150px" height="130px" />
+    </div>--%>
+</div>
+<!-- 广告区域2end-->
+<%--广告区--%>
+<script type="text/javascript">
+    $(function(){
+        $.ajax({
+            url:'<%=request.getContextPath()%>/Spread/queryAd',
+            type:'post',
+            datatype:'json',
+            success:function(addata){
+                /*   console.info(addata)*/
+                for(var j=0;j<addata.length;j++){
+                    var jj=j+1;
+                    var adStr="<div>" +
+                        " <span onclick='closead("+jj+")'>关闭</span>" +
+                        " </div>" +
+                        " <div>" +
+                        " <img src='"+addata[j].adimg+"' width='150px' height='200px'/>" +
+                        " </div>";
+
+                    $("#ad" + jj).html(adStr)
+                }
+            },erroe:function(){
+                    alert("广告查詢失敗")
+            }
+        })
+    })
+    function closead(id) {
+        $("#ad" + id).html("")
+    }
 </script>
 </body>
 </html>
