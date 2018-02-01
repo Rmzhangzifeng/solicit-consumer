@@ -91,14 +91,29 @@
                 <a href="index.jsp"><img src="images/logo.jpg" alt="享笑网LOGO 征文比赛 有奖征文"/></a>
             </div>
             <div class="pb-iblock pb-fl pb-nav">
-                <ul>
-                    <li><a href="index.html">首页</a></li>
-                    <li><a href="news.html">征文比赛</a></li>
-                    <li><a href="pic.html">倾听世界</a></li>
-                    <li><a href="ear.html">叫醒耳朵</a></li>
-                    <li class="pb-nav-li-last"><a href="laugh.html">每日一笑</a></li>
+                <ul id="indexMenuUl">
                 </ul>
             </div>
+            <%--查询首页菜单--%>
+            <script>
+                $.ajax({
+                    url:"<%=request.getContextPath()%>/index/queryIndexMenuList",
+                    type:"post",
+                    async:false,
+                    dataType:"json",
+                    success:function (indexMenuList){
+                        var indexMenustr = "";
+                        for (var i =0;i<indexMenuList.length-1;i++){
+                            indexMenustr+="<li><a href='"+indexMenuList[i].editurl+"'>"+indexMenuList[i].edittext+"</a></li>";
+                        }
+                        indexMenustr+="<li class='pb-nav-li-last'><a href='"+indexMenuList[indexMenuList.length-1].editurl+"'>"+indexMenuList[indexMenuList.length-1].edittext+"</a></li>";
+                        $("#indexMenuUl").html(indexMenustr);
+                    },
+                    error:function (){
+                        alert("Connection error - indexMenuList连接失败,请联系管理员！");
+                    }
+                });
+            </script>
             <div class="pb-iblock pb-fr pb-oths">
                 <a class="nmt" href="javascript:void(0);" onclick="Sys.commStat(2);
               commonLib.SetHome(this);">设为首页</a>
@@ -329,51 +344,6 @@
                     </div>
                     <div class="idx-wqzt pb-mt15 pb-after-clear">
                         <ul class="idx-wqzt pb-mt10" id="PastArtWITHfiveid">
-                            <%--<li>
-                                <dl>
-                                    <dt>
-                                        <a href="news_detail.html?-8"><img alt="毕业季 校园时代 七月校园 离别气息" src="images/essay_10001_b959107f8b.jpg" /></a>
-                                    </dt>
-                                    <dd>
-                                        <a href="news_detail.html?-8">游走在毕业的季节</a>
-                                    </dd>
-                                </dl> </li>
-                            <li>
-                                <dl>
-                                    <dt>
-                                        <a href="news_detail.html?-7"><img alt="去旅行，装满爱，夏天旅行，夏天旅游" src="images/essay_10001_ed83e14b8a.png" /></a>
-                                    </dt>
-                                    <dd>
-                                        <a href="news_detail.html?-7">装满爱，去旅行</a>
-                                    </dd>
-                                </dl> </li>
-                            <li>
-                                <dl>
-                                    <dt>
-                                        <a href="news_detail.html?-6"><img alt="有奖征文，征文比赛，享笑网有奖征文比赛，第六期有奖征文，有奖征文之飘着淡淡粽香的父亲节，征文专题之飘着淡淡粽香的父亲节，端午节和父亲节感想，端午节感想，父亲节感想" src="images/essay_10001_183a4e95ad.jpg" /></a>
-                                    </dt>
-                                    <dd>
-                                        <a href="news_detail.html?-6">飘着淡淡粽香的父亲节</a>
-                                    </dd>
-                                </dl> </li>
-                            <li>
-                                <dl>
-                                    <dt>
-                                        <a href="news_detail.html?-5"><img alt="有奖征文，征文比赛，享笑网有奖征文比赛，第五期有奖征文，有奖征文之东方之星之痛，征文专题之东方之星之痛，东方之星沉船之痛，东方之星沉船" src="images/essay_10001_8d58c19a60.jpg" /></a>
-                                    </dt>
-                                    <dd>
-                                        <a href="news_detail.html?-5">东方之星之痛</a>
-                                    </dd>
-                                </dl> </li>
-                            <li style="margin-right:0;">
-                                <dl>
-                                    <dt>
-                                        <a href="news_detail.html?-4"><img alt="有奖征文，征文比赛，享笑网有奖征文比赛，第四期有奖征文，有奖征文之你和你的城，征文专题之你和你的城" src="images/essay_10001_0ba5781188.jpg" /></a>
-                                    </dt>
-                                    <dd>
-                                        <a href="news_detail.html?-4">你和你的城</a>
-                                    </dd>
-                                </dl> </li> --%>
                         </ul>
                     </div>
                     <%--往期征文展示--%>
