@@ -30,20 +30,20 @@
 		//初始化
 		var init = function(){
 			if(!wrapper.size()) return false;
-			
+
 			li_height = lis.first().height();
 			li_width = lis.first().width();
-			
+
 			wrapper.css({width: li_width+'px', height:li_height+'px'});
 			lis.css({width: li_width+'px', height:li_height+'px'});//ADD.JENA.201207051027
-			
+
 			if (settings.direction == 'left') {
 				ul.css('width', li_num * li_width + 'px');
 			} else {
 				ul.css('height', li_num * li_height + 'px');
-			}			
+			}
 			ul.find('li:eq('+settings.startIndex+')').addClass('active');
-			
+
 			if(!settings.hideBottomBar){//ADD.JENA.201208090859
 				var tips = $('<div class="tips"></div>').css('opacity', 0.6).appendTo(wrapper);
 				/*var title = $('<div class="title"></div>').html(function(){
@@ -62,7 +62,7 @@
 						stop();
 					}).appendTo(nums);
 				});
-			
+
 				if(settings.hideClickBar){//ADD.JENA.201206300847
 					tips.hover(function(){
 						nums.animate({top: '0px'}, 'fast');
@@ -74,7 +74,7 @@
 					nums.show();
 				}
 			}
-			
+
 			lis.size()>1 && start();
 		}
 		//开始轮播
@@ -88,7 +88,7 @@
 				offset = index * li_height * -1;
 				param = {'top':offset + 'px' };
 			}
-			
+
 			wrapper.find('.nums').find('a:eq('+index+')').addClass('active').siblings().removeClass('active');
 			wrapper.find('.title').find('a').attr('href', active_a.attr('href')).text(active_a.attr('title'));
 
@@ -121,7 +121,7 @@
 			stop();
 		}, function(){
 			start();
-		});	
+		});
 		//首张图片加载完毕后执行初始化
 		var imgLoader = new Image();
 		imgLoader.onload = function(){
@@ -129,6 +129,6 @@
 			init();
 		}
 		imgLoader.src = firstPic.attr('src');
-			
+
 	};
 })(jQuery);
