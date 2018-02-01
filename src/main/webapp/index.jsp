@@ -83,6 +83,26 @@
     </script>
 </head>
 <body>
+<!-- 广告区域 1begin  -->
+<div id="ad1"
+     style="position: fixed; left: 0px; overflow: hidden; z-index: 2147483647; top: 0px;">
+  <%--  <div>
+        <img src="imaage/11.jpg" width="150px" height="130px" />
+    </div>
+    <div>
+        <span onclick="closead(1)">关闭</span>
+    </div>--%>
+</div>
+<div id="ad2"
+     style="position: fixed; right: 0px; overflow: hidden; z-index: 2147483647; top: 0px;">
+    <%--<div>
+        <img src="imaage/12.jpg" width="150px" height="130px" />
+    </div>
+    <div>
+        <span onclick="closead(2)">关闭</span>
+    </div>--%>
+</div>
+<!-- 广告区域 1end  -->
 <div class="pb-container">
     <div class="pb-container-main pb-after-clear">
         <!-- 公共头部 -->
@@ -153,6 +173,7 @@
                     type: "post",
                     dataType: "json",
                     success: function (data) {
+                        console.info(data)
                         var spreadmsg = "";
                         for (var i = 0; i < data.length; i++) {
                             spreadmsg += "<li><a target='_blank' onclick='点击' href='#'>" +
@@ -170,7 +191,9 @@
                             hideClickBar: true,
                             clickBarRadius: 10
                         });
-                    });
+                    }
+                })
+            })
                 </script>
                 <div style="clear:both;"></div>
                 <div class="pb-main pb-mt20">
