@@ -3,7 +3,7 @@ package org.maker.pojo;
 import java.io.Serializable;
 import java.util.Date;
 
-public class Recharges  implements Serializable {
+public class Recharges implements Serializable{
     private Integer rechargeid;
 
     private Integer userzid;

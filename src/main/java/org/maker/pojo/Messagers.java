@@ -3,7 +3,7 @@ package org.maker.pojo;
 import java.io.Serializable;
 import java.util.Date;
 
-public class Messagers  implements Serializable {
+public class Messagers implements Serializable {
     private Integer contactinformationid;
 
     private Integer messageexpediterid;

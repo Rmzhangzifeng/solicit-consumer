@@ -3,10 +3,8 @@
  <head> 
   <meta property="qc:admins" content="542536566763012535145636" /> 
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
-  <title>新闻列表</title> 
-  <meta name="keywords" content="有奖征文比赛结果，高中生恋爱 高中生谈恋爱 谈恋爱 青涩 大学恋爱" /> 
-  <meta name="description" content="“别人是大手拉小手，咱们是左手拉右手”是大学里面的至理名言，有人说没有谈过恋爱的大学不是完美的大学。然而与之相差不太远的高中生恋爱却总是偷偷摸摸的。每一个生命之间发生的感情都是真切，高中生的恋爱又多少有些青涩。你高中的时候恋爱了吗？来谈谈你对高中生恋爱的看法吧！本期投稿结束时间：12月20日。" /> 
-  <meta name="viewport" content="width=1050" /> 
+  <title>征文比赛</title>
+  <meta name="viewport" content="width=1050" />
   <link rel="stylesheet" type="text/css" href="css/common.css?v7.2" /> 
   <link rel="stylesheet" type="text/css" href="css/public.css?v1" /> 
   <link href="images/favicon.ico?v=0.1" mce_href="http://www.sharesmile.cn/favicon.ico" rel="icon" type="image/x-icon" /> 
@@ -94,17 +92,31 @@ function getBrowser()
     <!-- 公共头部 --> 
     <div class="pb-main pb-navwrap pb-after-clear"> 
      <div class="pb-iblock pb-fl pb-logo"> 
-      <a href="index.html"><img src="images/logo.jpg" alt="享笑网LOGO 征文比赛 有奖征文" /></a> 
+      <a href="index.jsp"><img src="images/logo.jpg" alt="享笑网LOGO 征文比赛 有奖征文" /></a>
      </div> 
      <div class="pb-iblock pb-fl pb-nav"> 
-      <ul> 
-       <li><a href="index.jsp">首页</a></li>
-       <li><a href="news.jsp">征文比赛</a></li>
-       <li><a href="pic.jsp">倾听世界</a></li>
-       <li><a href="ear.jsp">叫醒耳朵</a></li>
-       <li class="pb-nav-li-last"><a href="laugh.jsp">每日一笑</a></li>
-      </ul> 
-     </div> 
+      <ul id="indexMenuzhengwenUl">
+      </ul>
+     </div>
+     <script>
+         $.ajax({
+             url:"<%=request.getContextPath()%>/index/queryIndexMenuList",
+             type:"post",
+             async:false,
+             dataType:"json",
+             success:function (indexMenuList){
+                 var indexMenustr = "";
+                 for (var i =0;i<indexMenuList.length-1;i++){
+                     indexMenustr+="<li><a href='"+indexMenuList[i].editurl+"'>"+indexMenuList[i].edittext+"</a></li>";
+                 }
+                 indexMenustr+="<li class='pb-nav-li-last'><a href='"+indexMenuList[indexMenuList.length-1].editurl+"'>"+indexMenuList[indexMenuList.length-1].edittext+"</a></li>";
+                 $("#indexMenuzhengwenUl").html(indexMenustr);
+             },
+             error:function (){
+                 alert("Connection error - indexMenuList连接失败,请联系管理员！");
+             }
+         });
+     </script>
      <div class="pb-iblock pb-fr pb-oths"> 
       <a class="nmt" href="javascript:void(0);" onclick="Sys.commStat(2);commonLib.SetHome(this);">设为首页</a> 
       <a class="nmt" href="index.jsp" rel="sidebar" onclick="Sys.commStat(1);commonLib.addFavorite();">收藏我们</a>
@@ -132,9 +144,9 @@ function getBrowser()
     <!-- 公共头部 --> 
     <!-- 面包屑 --> 
     <div class="pb-main pb-breadcrumbs pb-mt40 pb-size-small"> 
-     <a href="index.html">首页</a> &gt;&gt; 
-     <a href="news.html">征文比赛</a> &gt;&gt; 
-     <a>你如何看待高中生恋爱</a> 
+     <a href="index.jsp">首页</a> &gt;&gt;
+     <a href="news.jsp">征文比赛</a> &gt;&gt;
+     <a><span id="zhengwenmianbaoxie"></span></a>
     </div> 
     <!-- 面包屑结束 --> 
     <!-- 当前页面内容 --> 
@@ -143,14 +155,31 @@ function getBrowser()
      <!--专题章展示--> 
      <div class="topics-main pb-inner-main pb-mt10"> 
       <div class="head"> 
-       <h1>【你如何看待高中生恋爱】</h1> 
-       <p class="pb-mt10"> “别人是大手拉小手，咱们是左手拉右手”是大学里面的至理名言，有人说没有谈过恋爱的大学不是完美的大学。然而与之相差不太远的高中生恋爱却总是偷偷摸摸的。每一个生命之间发生的感情都是真切，高中生的恋爱又多少有些青涩。你高中的时候恋爱了吗？来谈谈你对高中生恋爱的看法吧！本期投稿结束时间：12月20日。 </p> 
-      </div> 
-      <div class="pb-size-small pb-mt15 tool"> 
+       <h1>【<span id="zhengwentitlespan"></span>】</h1>
+       <p class="pb-mt10"> <span id="zhengwenContent"></span></p>
+      </div>
+      <%--查询本期话题信息--%>
+      <script>
+          $.ajax({
+              url:"<%=request.getContextPath()%>/index/queryEssaythemesTitleSpan",
+              type:"post",
+              async:false,
+              dataType:"json",
+              success:function (EssaythemesTitle){
+                  $("#zhengwentitlespan").html(EssaythemesTitle.title);
+                  $("#zhengwenmianbaoxie").html(EssaythemesTitle.title);
+                  $("#zhengwenContent").html(EssaythemesTitle.themecontent+" 本期投稿结束时间："+EssaythemesTitle.themeendtime);
+              },
+              error:function (){
+                  alert("Connection error - ZhengwenEssaythemesSpan连接失败,请联系管理员！");
+              }
+          });
+      </script>
+      <div class="pb-size-small pb-mt15 tool">
        <span class="">排序方式 : </span> 
        <a href="news_detail.html?-10">时间</a> 
        <a href="news_detail.html?-10?priority=score">评分</a> 
-      </div> 
+      </div>
       <ul class="pb-mt30"> 
        <li> <a href="news_detail.html?-10-65"><img src="images/essay_10001_e27ef3b65d.jpg" class="pb-fl" alt="如果高中生谈恋爱，请善待它,征文比赛，有奖征文" /></a> 
         <dl> 
@@ -254,12 +283,28 @@ function getBrowser()
       <h6 class="pb-mt15 pb-clr1 pb-size-big">下期专题</h6> 
       <div class="pb-line2 pb-mt5"> 
       </div> 
-      <a class="tle pb-mt5" href="news_detail.html?/add">年味为什么越来越淡了</a> 
+      <a class="tle pb-mt5" href="news_detail.html?/add"><span id="NextEssayArtATitleSpanzhengwen"></span></a>
       <div class="pb-line2 pb-mt5"> 
       </div> 
-      <h6 class="pb-mt15"> <span class="pb-clr1 pb-size-normal">已投稿 <i class="tougao">2</i></span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="javascript:Sys.showRuleDiv();" class="pb-clr1 pb-size-small pb-underline">获奖规则</a> </h6> 
+      <h6 class="pb-mt15"> <span class="pb-clr1 pb-size-normal" id="NextTouGaoNumberSpanzhengwen">已投稿 <i class="tougao">2</i></span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="javascript:Sys.showRuleDiv();" class="pb-clr1 pb-size-small pb-underline">获奖规则</a> </h6>
       <a class="but pb-clr1 pb-size-normal pb-mt15" href="news_detail.html?/add">有奖征文</a> 
-     </div> 
+     </div>
+     <%--查询下期专题以及已投稿个数--%>
+     <script>
+         $.ajax({
+             url:"<%=request.getContextPath()%>/index/queryNextEssayAndNumber",
+             type:"post",
+             async:false,
+             dataType:"json",
+             success:function (EssayListMap){
+                 $("#NextEssayArtATitleSpanzhengwen").html(EssayListMap.nextEssaythemesTitle);
+                 $("#NextTouGaoNumberSpanzhengwen").html("已投稿 <i class='tougao'>"+EssayListMap.NextYiTouNumber+"</i>");
+             },
+             error:function (){
+                 alert("Connection error - 连接失败,请联系管理员！");
+             }
+         });
+     </script>
      <!--右侧我要投稿公共部分--> 
      <div class="pb-main-side pb-iblock pb-after-clear pb-fr pb-mt40"> 
       <h6 class="pb-clr1 pb-size-big">征文排行</h6> 

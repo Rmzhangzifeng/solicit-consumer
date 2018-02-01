@@ -2,7 +2,7 @@ package org.maker.pojo;
 
 import java.io.Serializable;
 
-public class Checks  implements Serializable {
+public class Checks implements Serializable {
     private Integer checkid;
 
     private Integer listid;

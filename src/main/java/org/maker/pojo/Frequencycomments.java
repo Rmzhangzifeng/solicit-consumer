@@ -2,7 +2,7 @@ package org.maker.pojo;
 
 import java.io.Serializable;
 
-public class Frequencycomments  implements Serializable {
+public class Frequencycomments implements Serializable {
     private Integer frequencycommentid;
 
     private String frequencycontents;

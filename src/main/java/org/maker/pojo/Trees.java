@@ -3,7 +3,7 @@ package org.maker.pojo;
 import java.io.Serializable;
 import java.util.List;
 
-public class Trees  implements Serializable {
+public class Trees implements Serializable {
 
 
 

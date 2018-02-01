@@ -3,7 +3,7 @@ package org.maker.pojo;
 import java.io.Serializable;
 import java.util.Date;
 
-public class Frequencys  implements Serializable {
+public class Frequencys implements Serializable {
     private Integer frequencyid;
 
     private String frequencytitle;
@@ -15,6 +15,36 @@ public class Frequencys  implements Serializable {
     private Date releasetime;
 
     private String frequencyconver;
+
+    private Integer frequencyreview;
+
+    private String frequencyids;
+
+    private Integer frerole;
+
+    public Integer getFrerole() {
+        return frerole;
+    }
+
+    public void setFrerole(Integer frerole) {
+        this.frerole = frerole;
+    }
+
+    public String getFrequencyids() {
+        return frequencyids;
+    }
+
+    public void setFrequencyids(String frequencyids) {
+        this.frequencyids = frequencyids;
+    }
+
+    public Integer getFrequencyreview() {
+        return frequencyreview;
+    }
+
+    public void setFrequencyreview(Integer frequencyreview) {
+        this.frequencyreview = frequencyreview;
+    }
 
     public Integer getFrequencyid() {
         return frequencyid;

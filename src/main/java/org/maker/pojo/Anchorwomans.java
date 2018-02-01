@@ -2,7 +2,7 @@ package org.maker.pojo;
 
 import java.io.Serializable;
 
-public class Anchorwomans implements Serializable{
+public class Anchorwomans implements Serializable {
     private Integer anchorwomanid;
 
     private String anchorwomanname;

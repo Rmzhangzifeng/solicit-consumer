@@ -2,7 +2,7 @@ package org.maker.pojo;
 
 import java.io.Serializable;
 
-public class Stree  implements Serializable {
+public class Stree implements Serializable {
     private Integer id;
 
     private String text;

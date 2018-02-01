@@ -1,8 +1,9 @@
 package org.maker.pojo;
 
 import java.io.Serializable;
+import java.util.Date;
 
-public class Picreviews  implements Serializable {
+public class Picreview implements Serializable {
     private Integer picreviewid;
 
     private String picreviewcontent;
@@ -12,6 +13,16 @@ public class Picreviews  implements Serializable {
     private Integer picphotosid;
 
     private Integer pictopicszid;
+
+    private Integer picstatus;
+
+    private Date picwybdate;
+
+    private String pictime;
+
+
+    private String username;
+
 
     public Integer getPicreviewid() {
         return picreviewid;
@@ -51,5 +62,39 @@ public class Picreviews  implements Serializable {
 
     public void setPictopicszid(Integer pictopicszid) {
         this.pictopicszid = pictopicszid;
+    }
+
+
+    public Integer getPicstatus() {
+        return picstatus;
+    }
+
+    public void setPicstatus(Integer picstatus) {
+        this.picstatus = picstatus;
+    }
+
+
+    public String getPictime() {
+        return pictime;
+    }
+
+    public void setPictime(String pictime) {
+        this.pictime = pictime;
+    }
+
+    public Date getPicwybdate() {
+        return picwybdate;
+    }
+
+    public void setPicwybdate(Date picwybdate) {
+        this.picwybdate = picwybdate;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }

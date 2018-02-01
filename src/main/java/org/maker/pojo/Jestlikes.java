@@ -2,7 +2,7 @@ package org.maker.pojo;
 
 import java.io.Serializable;
 
-public class Jestlikes  implements Serializable {
+public class Jestlikes implements Serializable {
     private Integer jestlikeid;
 
     private Integer jestnid;

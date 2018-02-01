@@ -179,8 +179,8 @@ function getBrowser()
        <button class="t3" act="comment"><i class="pb-icons"></i> +5分</button> 
        <div class="bdsharebuttonbox pb-hide" style="line-height: 28px; position: absolute; top: 118px; right: 175px;"> 
         <span class="pb-fl">分享到合作网站并加15分：</span> 
-        <a title="分享到QQ空间" href="http://www.lanrenzhijia.com/"" class="bds_qzone" data-cmd="qzone"></a>
-        <a title="分享到新浪微博" href="http://www.lanrenzhijia.com/"" class="bds_tsina" data-cmd="tsina"></a> 
+        <a title="分享到QQ空间" href="http://www.lanrenzhijia.com/" class="bds_qzone" data-cmd="qzone"></a>
+        <a title="分享到新浪微博" href="http://www.lanrenzhijia.com/" class="bds_tsina" data-cmd="tsina"></a>
        </div> 
        <script>window._bd_share_config={"common":{"onBeforeClick":function(cmd, config){
 				if( cmd == 'tsina'){

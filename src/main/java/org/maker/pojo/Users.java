@@ -3,7 +3,7 @@ package org.maker.pojo;
 import java.io.Serializable;
 import java.util.Date;
 
-public class Users  implements Serializable {
+public class Users implements Serializable {
     private Integer userid;
 
     private String username;
@@ -37,6 +37,18 @@ public class Users  implements Serializable {
     private String useraccount;
 
     private String userpass;
+
+    private Integer userroleid;
+
+
+
+    public Integer getUserroleid() {
+        return userroleid;
+    }
+
+    public void setUserroleid(Integer userroleid) {
+        this.userroleid = userroleid;
+    }
 
     public Integer getUserid() {
         return userid;

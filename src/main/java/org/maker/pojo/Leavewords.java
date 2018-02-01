@@ -2,7 +2,7 @@ package org.maker.pojo;
 
 import java.io.Serializable;
 
-public class Leavewords  implements Serializable {
+public class Leavewords implements Serializable {
     private Integer leavewordid;
 
     private Integer adminid;

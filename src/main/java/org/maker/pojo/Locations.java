@@ -2,7 +2,7 @@ package org.maker.pojo;
 
 import java.io.Serializable;
 
-public class Locations  implements Serializable {
+public class Locations implements Serializable {
     private Integer id;
 
     private Integer pid;

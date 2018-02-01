@@ -92,17 +92,34 @@
                 <!-- 公共头部 --> 
                 <div class="pb-main pb-navwrap pb-after-clear"> 
                     <div class="pb-iblock pb-fl pb-logo"> 
-                        <a href="index.html"><img src="images/logo.jpg" alt="享笑网LOGO 征文比赛 有奖征文" /></a> 
+                        <a href="index.jsp"><img src="images/logo.jpg" alt="享笑网LOGO 征文比赛 有奖征文" /></a>
                     </div> 
                     <div class="pb-iblock pb-fl pb-nav"> 
-                        <ul> 
-                            <li><a href="index.jsp">首页</a></li>
-                            <li><a href="news.jsp">征文比赛</a></li>
-                            <li><a href="pic.jsp">倾听世界</a></li>
-                            <li><a href="ear.jsp">叫醒耳朵</a></li>
-                            <li class="pb-nav-li-last"><a href="laugh.jsp">每日一笑</a></li>
+                        <ul id="indexMenuUl">
+
                         </ul> 
-                    </div> 
+                    </div>
+                    <%--查询首页菜单栏SC--%>
+                    <script>
+                        $.ajax({
+                            url:"<%=request.getContextPath()%>/index/queryIndexMenuList",
+                            type:"post",
+                            async:false,
+                            dataType:"json",
+                            success:function (indexMenuList){
+                                var indexMenustr = "";
+                                for (var i =0;i<indexMenuList.length-1;i++){
+                                    indexMenustr+="<li><a href='"+indexMenuList[i].editurl+"'>"+indexMenuList[i].edittext+"</a></li>";
+                                }
+                                indexMenustr+="<li class='pb-nav-li-last'><a href='"+indexMenuList[indexMenuList.length-1].editurl+"'>"+indexMenuList[indexMenuList.length-1].edittext+"</a></li>";
+                                $("#indexMenuUl").html(indexMenustr);
+                            },
+                            error:function (){
+                                alert("Connection error - indexMenuList连接失败,请联系管理员！");
+                            }
+                        });
+                    </script>
+
                     <div class="pb-iblock pb-fr pb-oths"> 
                         <a class="nmt" href="javascript:void(0);" onclick="Sys.commStat(2);
               commonLib.SetHome(this);">设为首页</a> 
@@ -163,27 +180,79 @@
                     <div class="idx-ycwz-1 pb-mt20 pb-after-clear"> 
                         <a href="news_detail.html?-10" class="pb-iblock pb-fl"> <img src="images/essay_10001_f6d8065f91.jpg" class="pb-block" alt="本期征文比赛,你如何看待高中生恋爱" /> </a> 
                         <div class="pb-iblock pb-fl d1"> 
-                            <h6><a href="news_detail.html?-10" class="pb-clr1 pb-size-big">本期征文比赛 | <span>你如何看待高中生恋爱</span></a></h6> 
+                            <h6><a href="news_detail.html?-10" class="pb-clr1 pb-size-big">本期征文比赛 | <span id="EssaythemesTitleSpanid"></span></a></h6>
+                            <input type="hidden" id="indexArticleid">
+                            <%--查询首页本期征文标题--%>
+                            <script>
+                                $.ajax({
+                                    url:"<%=request.getContextPath()%>/index/queryEssaythemesTitleSpan",
+                                    type:"post",
+                                    async:false,
+                                    dataType:"json",
+                                    success:function (EssaythemesTitle){
+                                      $("#EssaythemesTitleSpanid").html(EssaythemesTitle.title);
+                                      $("#indexArticleid").val(EssaythemesTitle.articletopicid);
+                                    },
+                                    error:function (){
+                                        alert("Connection error - EssaythemesTitle连接失败,请联系管理员！");
+                                    }
+                                });
+                            </script>
                             <div class="pb-line2 pb-mt5" style="border:0;"> 
                             </div> 
-                            <ul> 
-                                <li class="pb-mt20"> <a href="news_detail.html?-10-72"><img src="images/essay_10001_8dd1e515f2.jpg" class="pb-fl" alt="本期征文比赛文章,一种不成熟的爱" /></a> <a href="news_detail.html?-10-72" class="pb-fl rt">一种不成熟的爱 / 木目心</a> <p class="pb-iblock">高中，对于很多人来说，是一段带着自己的大学梦储备能量的征途吧，为的只是在最后一场战—</p> </li> 
-                                <li class="pb-mt20"> <a href="news_detail.html?-10-73"><img src="images/essay_10001_bf886ee0c8.jpg" class="pb-fl" alt="本期征文比赛文章,高中.成长" /></a> <a href="news_detail.html?-10-73" class="pb-fl rt">高中.成长 / 小小一轮弯</a> <p class="pb-iblock">高中时期学业繁重，前途迷茫，空虚与不被理解成了早恋原因。当我们无法从长辈那得到理解与</p> </li> 
-                                <li class="pb-mt20"> <a href="news_detail.html?-10-74"><img src="images/essay_10001_6e99eb35e6.jpg" class="pb-fl" alt="本期征文比赛文章,多感激，那是你" /></a> <a href="news_detail.html?-10-74" class="pb-fl rt">多感激，那是你 / Someone.</a> <p class="pb-iblock">“看着今天的朝阳又是金碧辉煌一大片，我突然很想吃姥姥家的炸鸡排，外焦里嫩，老大一个，</p> </li> 
-                            </ul> 
-                        </div> 
-                        <!--右侧我要投稿公共部分--> 
+                            <ul id="solicitarticlesUl">
+
+                            </ul>
+                        </div>
+                        <%--查询首页征文列表显示--%>
+                        <script>
+                            $.ajax({
+                                url:"<%=request.getContextPath()%>/index/queryIndexSolicitarticlesUl",
+                                type:"post",
+                                data:{"gambitid":$("#indexArticleid").val()},
+                                async:false,
+                                dataType:"json",
+                                success:function (solicitarticlesList){
+                                    console.info(solicitarticlesList);
+                                    var solicitarticlesStr = "";
+                                    for (var i=0;i<solicitarticlesList.length;i++){
+                                        solicitarticlesStr+="<li class='pb-mt20'> <a href='#'><img src='"+solicitarticlesList[i].solicitarticlescover+"' class='pb-fl' width='50px' height='20px'/></a> <a href='#' class='pb-fl rt'>"+solicitarticlesList[i].solicitarticlestitle+" / "+solicitarticlesList[i].solicusername+"</a> <p class='pb-iblock'>"+solicitarticlesList[i].contentStr+"</p> </li>";
+                                    }
+                                    $("#solicitarticlesUl").html(solicitarticlesStr);
+                                },
+                                error:function (){
+                                    alert("Connection error - solicitarticlesList连接失败,请联系管理员！");
+                                }
+                            });
+                        </script>
+                        <!--右侧我要投稿公共部分-->
                         <div class="pb-iblock pb-fr pb-after-clear pb-main-side"> 
                             <img src="images/icon_tougaoyouqian.jpg" class="pb-block" alt="征文比赛 有奖征文" /> 
                             <h6 class="pb-mt15 pb-clr1 pb-size-big">下期专题</h6> 
                             <div class="pb-line2 pb-mt5"> 
                             </div> 
-                            <a class="tle pb-mt5" href="news_detail.html?/add">年味为什么越来越淡了</a> 
+                            <a class="tle pb-mt5" href="#"><span id="NextEssayArtATitleSpan"></span></a>
                             <div class="pb-line2 pb-mt5"> 
                             </div> 
-                            <h6 class="pb-mt15"> <span class="pb-clr1 pb-size-normal">已投稿 <i class="tougao">2</i></span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="javascript:Sys.showRuleDiv();" class="pb-clr1 pb-size-small pb-underline">获奖规则</a> </h6> 
+                            <h6 class="pb-mt15"> <span class="pb-clr1 pb-size-normal" id="NextTouGaoNumberSpan"></span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="javascript:Sys.showRuleDiv();" class="pb-clr1 pb-size-small pb-underline">获奖规则</a> </h6>
                             <a class="but pb-clr1 pb-size-normal pb-mt15" href="news_detail.html?/add">有奖征文</a> 
-                        </div> 
+                        </div>
+                        <%--查询下期专题以及已投稿个数--%>
+                        <script>
+                            $.ajax({
+                                url:"<%=request.getContextPath()%>/index/queryNextEssayAndNumber",
+                                type:"post",
+                                async:false,
+                                dataType:"json",
+                                success:function (EssayListMap){
+                                    $("#NextEssayArtATitleSpan").html(EssayListMap.nextEssaythemesTitle);
+                                    $("#NextTouGaoNumberSpan").html("已投稿 <i class='tougao'>"+EssayListMap.NextYiTouNumber+"</i>");
+                                },
+                                error:function (){
+                                    alert("Connection error - 连接失败,请联系管理员！");
+                                }
+                            });
+                        </script>
                         <!--右侧我要投稿公共部分--> 
                     </div> 
                     <div class="idx-ycwz-1 pb-mt50 pb-after-clear"> 
@@ -259,8 +328,8 @@
                     <div class="pb-line2 pb-mt5"> 
                     </div> 
                     <div class="idx-wqzt pb-mt15 pb-after-clear"> 
-                        <ul class="idx-wqzt pb-mt10"> 
-                            <li> 
+                        <ul class="idx-wqzt pb-mt10" id="PastArtWITHfiveid">
+                            <%--<li>
                                 <dl> 
                                     <dt> 
                                         <a href="news_detail.html?-8"><img alt="毕业季 校园时代 七月校园 离别气息" src="images/essay_10001_b959107f8b.jpg" /></a> 
@@ -304,10 +373,30 @@
                                     <dd>
                                         <a href="news_detail.html?-4">你和你的城</a>
                                     </dd> 
-                                </dl> </li> 
+                                </dl> </li> --%>
                         </ul> 
-                    </div> 
-                    <h3 class="idx-qtsj-t pb-mt50"> 
+                    </div>
+                    <%--往期征文展示--%>
+                    <script>
+                        $.ajax({
+                            url:"<%=request.getContextPath()%>/index/queryPastArtWITHfive",
+                            type:"post",
+                            async:false,
+                            dataType:"json",
+                            success:function (PastArtWITHfiveList){
+                                var PastArtWITHfiveStr = "";
+                                for (var i=0;i<PastArtWITHfiveList.length-1;i++){
+                                    PastArtWITHfiveStr+="<li><dl><dt><a href='news_detail.html?-4'><img src='<%=request.getContextPath()%>"+PastArtWITHfiveList[i].solicitarticlescover+"' width='100px' height='130px'/></a></dt><dd><a href='#'>"+PastArtWITHfiveList[i].solicitarticlestitle+"</a></dd></dl></li>";
+                                }
+                                PastArtWITHfiveStr+="<li style='margin-right:0;'><dl><dt><a href='news_detail.html?-4'><img src='"+PastArtWITHfiveList[PastArtWITHfiveList.length-1].solicitarticlescover+"'  width='100px' height='130px'/></a></dt><dd><a href='#'>"+PastArtWITHfiveList[PastArtWITHfiveList.length-1].solicitarticlestitle+"</a></dd></dl></li>";
+                                $("#PastArtWITHfiveid").html(PastArtWITHfiveStr);
+                            },
+                            error:function (){
+                                alert("Connection error - PastArtWITHfiveList连接失败,请联系管理员！");
+                            }
+                        });
+                    </script>
+                    <h3 class="idx-qtsj-t pb-mt50">
                         <div class="inx-qtsj-line pb-fr"></div> 
                         <div class="inx-qtsj-line pb-fl"></div> <a href="pic.html"> <span class="chn">倾听世界</span> <br /> <span class="eng">LISTEN TO THE WORLD</span> </a> </h3> 
                     <div class="idx-qtsj pb-mt20 pb-after-clear"> 

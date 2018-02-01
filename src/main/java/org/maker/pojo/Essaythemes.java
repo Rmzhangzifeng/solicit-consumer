@@ -16,6 +16,68 @@ public class Essaythemes implements Serializable {
 
     private Integer themeendreview;
 
+    private Integer themestatus;
+
+    public Integer getThemestatus() {
+        return themestatus;
+    }
+
+    public void setThemestatus(Integer themestatus) {
+        this.themestatus = themestatus;
+    }
+
+    //结束时间Str
+    private String endTimeStr;
+    //开始时间Str
+    private String startTimeStr;
+    //删除的id集合
+    private String idStr;
+
+    private Integer emroles;
+
+    public Integer getEmroles() {
+        return emroles;
+    }
+
+    public void setEmroles(Integer emroles) {
+        this.emroles = emroles;
+    }
+
+    public String getIdStr() {
+        return idStr;
+    }
+
+    public void setIdStr(String idStr) {
+        this.idStr = idStr;
+    }
+
+    public String getStartTimeStr() {
+        return startTimeStr;
+    }
+
+    public void setStartTimeStr(String startTimeStr) {
+        this.startTimeStr = startTimeStr;
+    }
+
+    public String getEndTimeStr() {
+        return endTimeStr;
+    }
+
+    public void setEndTimeStr(String endTimeStr) {
+        this.endTimeStr = endTimeStr;
+    }
+
+
+    private String articletopicids;
+
+    public String getArticletopicids() {
+        return articletopicids;
+    }
+
+    public void setArticletopicids(String articletopicids) {
+        this.articletopicids = articletopicids;
+    }
+
     public Integer getThemeendreview() {
         return themeendreview;
     }
